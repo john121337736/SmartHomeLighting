@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">智能家居照明</string>
+    <string name="title_home">数据</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>

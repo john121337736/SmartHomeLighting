@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:paddingTop="40dp"
+    tools:context=".ui.dashboard.DashboardFragment">
+
+    <!-- 标题 -->
+    <TextView
+        android:id="@+id/dashboard_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="智能照明控制"
+        android:textColor="@color/text_primary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 吊灯动画区域 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/light_animation_container"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 灯泡状态图标区域 -->
+        <LinearLayout
+            android:id="@+id/bulbs_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="@color/background_dark"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/current_status_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone">
+
+            <!-- 指示器 - 红色灯泡 -->
+            <ImageView
+                android:id="@+id/red_light_bulb"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_light_bulb"
+                android:contentDescription="红色灯泡"
+                android:scaleType="fitCenter"
+                app:tint="@android:color/darker_gray" />
+
+            <!-- 指示器 - 冷光 -->
+            <View
+                android:id="@+id/cold_light_bulb"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="24dp" 
+                android:background="@drawable/circle_shape"
+                android:backgroundTint="@color/light_cold_off" />
+
+            <!-- 指示器 - 蓝光 -->
+            <View
+                android:id="@+id/blue_light_bulb"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/circle_shape"
+                android:backgroundTint="@color/light_blue_off" />
+
+            <!-- 指示器 - 暖光 -->
+            <View
+                android:id="@+id/warm_light_bulb"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/circle_shape"
+                android:backgroundTint="@color/light_warm_off" />
+
+        </LinearLayout>
+
+        <!-- 当前状态文本 -->
+        <TextView
+            android:id="@+id/current_status_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="传感器数据: 所有灯光已关闭"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/bulbs_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"/>
+
+        <!-- 传感器数据显示 -->
+        <LinearLayout
+            android:id="@+id/sensor_data_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            android:background="@drawable/sensor_data_background"
+            app:layout_constraintTop_toBottomOf="@id/current_status_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="传感器数据详情"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="红光 (level):"
+                    android:textColor="@color/light_red"
+                    android:textSize="14sp"
+                    android:gravity="end"
+                    android:paddingEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/red_light_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    android:gravity="start"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="冷光 (level1):"
+                    android:textColor="@color/light_cold"
+                    android:textSize="14sp"
+                    android:gravity="end"
+                    android:paddingEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/cold_light_sensor_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    android:gravity="start"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="蓝光 (level2):"
+                    android:textColor="@color/light_blue"
+                    android:textSize="14sp"
+                    android:gravity="end"
+                    android:paddingEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/blue_light_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    android:gravity="start"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="暖光 (level3):"
+                    android:textColor="@color/light_warm"
+                    android:textSize="14sp"
+                    android:gravity="end"
+                    android:paddingEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/warm_light_sensor_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    android:gravity="start"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 灯光控制卡片 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/light_control_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/background_medium"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_title"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- 灯光控制标题 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="亮度控制"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- 冷光控制行 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_cold_light"
+                    android:tint="@color/light_cold"
+                    android:layout_marginEnd="12dp"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="冷光亮度"
+                    android:textColor="@color/light_cold"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/cold_light_slider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:valueFrom="1"
+                    android:valueTo="5"
+                    android:stepSize="1"
+                    android:value="3"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:labelBehavior="gone"
+                    app:thumbColor="@color/light_cold"
+                    app:trackColorActive="@color/light_cold"
+                    app:haloColor="@color/light_cold_off"
+                    app:tickColorActive="@color/light_cold"
+                    app:tickColorInactive="@color/light_cold_off"
+                    app:trackColorInactive="#333333" />
+
+                <TextView
+                    android:id="@+id/cold_light_level"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/light_cold"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:background="@drawable/circle_shape"
+                    android:backgroundTint="@color/background_dark" />
+            </LinearLayout>
+
+            <!-- 暖光控制行 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_warm_light"
+                    android:tint="@color/light_warm"
+                    android:layout_marginEnd="12dp"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="暖光亮度"
+                    android:textColor="@color/light_warm"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/warm_light_slider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:valueFrom="1"
+                    android:valueTo="5"
+                    android:stepSize="1"
+                    android:value="3"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:labelBehavior="gone"
+                    app:thumbColor="@color/light_warm"
+                    app:trackColorActive="@color/light_warm"
+                    app:haloColor="@color/light_warm_off"
+                    app:tickColorActive="@color/light_warm"
+                    app:tickColorInactive="@color/light_warm_off"
+                    app:trackColorInactive="#333333" />
+
+                <TextView
+                    android:id="@+id/warm_light_level"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/light_warm"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:background="@drawable/circle_shape"
+                    android:backgroundTint="@color/background_dark" />
+            </LinearLayout>
+            
+            <!-- 红灯控制行 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_light_bulb"
+                    android:tint="@color/light_red"
+                    android:layout_marginEnd="12dp"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="红灯亮度"
+                    android:textColor="@color/light_red"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/red_light_slider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:valueFrom="1"
+                    android:valueTo="5"
+                    android:stepSize="1"
+                    android:value="1"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:labelBehavior="gone"
+                    app:thumbColor="@color/light_red"
+                    app:trackColorActive="@color/light_red"
+                    app:haloColor="@color/light_red_off"
+                    app:tickColorActive="@color/light_red"
+                    app:tickColorInactive="@color/light_red_off"
+                    app:trackColorInactive="#333333" />
+
+                <TextView
+                    android:id="@+id/red_light_slider_level"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/light_red"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:background="@drawable/circle_shape"
+                    android:backgroundTint="@color/background_dark" />
+            </LinearLayout>
+            
+            <!-- 蓝灯控制行 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_light_bulb"
+                    android:tint="@color/light_blue"
+                    android:layout_marginEnd="12dp"/>
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="蓝灯亮度"
+                    android:textColor="@color/light_blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/blue_light_slider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:valueFrom="1"
+                    android:valueTo="5"
+                    android:stepSize="1"
+                    android:value="1"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:labelBehavior="gone"
+                    app:thumbColor="@color/light_blue"
+                    app:trackColorActive="@color/light_blue"
+                    app:haloColor="@color/light_blue_off"
+                    app:tickColorActive="@color/light_blue"
+                    app:tickColorInactive="@color/light_blue_off"
+                    app:trackColorInactive="#333333" />
+
+                <TextView
+                    android:id="@+id/blue_light_slider_level"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/light_blue"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:background="@drawable/circle_shape"
+                    android:backgroundTint="@color/background_dark" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- 模式切换卡片 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/light_mode_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/background_medium"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/light_control_card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- 模式切换标题 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="模式切换"
+                    android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- 模式按钮容器 - 第一行 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="12dp">
+
+                <!-- 手动模式按钮 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_mode_manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="手动模式"
+                    android:textSize="13sp"
+                    android:layout_marginEnd="8dp"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_light_bulb"
+                    app:iconTint="@color/light_warm"
+                    app:iconGravity="textStart"
+                    android:backgroundTint="#424242" />
+
+                <!-- 自动模式按钮 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_mode_auto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="自动模式"
+                    android:textSize="13sp"
+                    android:layout_marginStart="8dp"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_light_bulb"
+                    app:iconTint="@color/light_cold"
+                    app:iconGravity="textStart"
+                    android:backgroundTint="#424242" />
+            </LinearLayout>
+
+            <!-- 模式按钮容器 - 第二行 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <!-- 警示模式按钮 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_mode_alarm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="警示模式"
+                    android:textSize="13sp"
+                    android:layout_marginEnd="4dp"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_light_bulb"
+                    app:iconTint="@color/light_red"
+                    app:iconGravity="textStart"
+                    android:backgroundTint="#424242" />
+
+                <!-- 闪烁模式按钮 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_mode_flash"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="闪烁模式"
+                    android:textSize="13sp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_light_bulb"
+                    app:iconTint="@color/light_blue"
+                    app:iconGravity="textStart"
+                    android:backgroundTint="#424242" />
+
+                <!-- 常亮模式按钮 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_mode_constant"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="常亮模式"
+                    android:textSize="13sp"
+                    android:layout_marginStart="4dp"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_light_bulb"
+                    app:iconTint="@color/text_primary"
+                    app:iconGravity="textStart"
+                    android:backgroundTint="#424242" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

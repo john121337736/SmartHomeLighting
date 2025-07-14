@@ -1,0 +1,76 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SmartHomeLighting" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- 控制系统栏文字颜色 -->
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- 设置沉浸式状态栏 -->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <!-- 完全隐藏标题 -->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置背景颜色 -->
+        <item name="android:windowBackground">@color/background_dark</item>
+        <!-- 按钮样式 -->
+        <item name="materialButtonOutlinedStyle">@style/Widget.App.Button.OutlinedButton.Light</item>
+        <item name="materialButtonToggleGroupStyle">@style/Widget.App.MaterialButtonToggleGroup</item>
+        <!-- 文本颜色 -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+    
+    <!-- Custom MaterialButton Toggle Group style -->
+     <style name="Widget.App.MaterialButtonToggleGroup" parent="Widget.MaterialComponents.MaterialButtonToggleGroup">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.MaterialButtonToggleGroup</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+    <style name="ThemeOverlay.App.MaterialButtonToggleGroup" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    
+    <!-- Custom OutlinedButton style -->
+    <style name="Widget.App.Button.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/outlined_button_stroke_color</item>
+        <item name="android:textColor">@color/outlined_button_text_color</item>
+        <item name="rippleColor">@color/teal_200</item>
+        <item name="iconPadding">8dp</item>
+        <item name="iconTint">@color/outlined_button_text_color</item>
+    </style>
+
+    <!-- Icon Only variant for Toggle Group -->
+    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.App.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <!-- 底部导航栏文字样式 -->
+    <style name="BottomNavigationTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+</resources>

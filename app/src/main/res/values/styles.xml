@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 浅色模式下的按钮样式 -->
+    <style name="Widget.App.Button.OutlinedButton.Light" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/primary</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="rippleColor">@color/teal_200</item>
+        <item name="iconPadding">8dp</item>
+        <item name="iconTint">@color/primary</item>
+        <item name="android:background">@drawable/button_border_light</item>
+    </style>
+</resources> 

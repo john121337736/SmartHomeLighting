@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- 新增颜色资源 -->
+    <color name="status_connected">#4CAF50</color>
+    <color name="status_disconnected">#F44336</color>
+    <color name="status_waiting">#FFC107</color>
+    <color name="background_dark">#F5F5F5</color>
+    <color name="background_medium">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="button_purple">#9C27B0</color>
+    <color name="sensor_data_bg">#F0F4F8</color>
+    <color name="primary_color">#3F51B5</color>
+    <color name="primary">#3F51B5</color>
+    
+    <!-- 高科技感颜色 -->
+    <color name="tech_blue">#00BCD4</color>
+    <color name="tech_cyan">#18FFFF</color>
+    <color name="tech_purple">#7C4DFF</color>
+    <color name="tech_green">#00E676</color>
+    <color name="tech_pink">#FF4081</color>
+    <color name="tech_amber">#FFD740</color>
+    <color name="tech_red">#FF5252</color>
+    <color name="tech_indigo">#3D5AFE</color>
+    <color name="gradient_start">#0D47A1</color>
+    <color name="gradient_end">#311B92</color>
+    <color name="card_border">#3F51B5</color>
+    
+    <!-- Home Fragment颜色 -->
+    <color name="card_bg_dark">#FFFFFF</color>
+    <color name="text_subtitle">#757575</color>
+    <color name="button_blue">#4361EE</color>
+    <color name="icon_red">#F44336</color>
+    <color name="icon_blue">#2196F3</color>
+    <color name="icon_purple">#9C27B0</color>
+    
+    <!-- MQTT主题颜色 -->
+    <color name="orange_200">#FFAB40</color>
+    
+    <!-- 消息类型背景颜色 -->
+    <color name="background_medium_dark">#F0F0F0</color>
+    <color name="background_system">#E1F5FE</color>
+    <color name="background_error">#FFEBEE</color>
+    
+    <!-- 灯光颜色 -->
+    <color name="light_cold">#40C4FF</color>
+    <color name="light_warm">#FFA726</color>
+    <color name="light_natural">#FFFDE7</color>
+    <color name="light_cold_off">#8040C4FF</color>
+    <color name="light_warm_off">#80FFA726</color>
+    <color name="light_natural_off">#80FFFDE7</color>
+    <color name="light_red">#FF5252</color>
+    <color name="light_red_off">#494949</color>
+    <color name="light_blue">#2979FF</color>
+    <color name="light_blue_off">#494949</color>
+
+    <!-- 灯泡状态颜色 -->
+    <color name="light_bulb_on">#FFEB3B</color>
+    <color name="light_bulb_off">#BDBDBD</color>
+
+    <!-- 灯泡颜色 -->
+    <color name="light_red_on">#FF5252</color>
+    <color name="light_cold_on">#81D4FA</color>
+    <color name="light_blue_on">#2196F3</color>
+    <color name="light_warm_on">#FFD54F</color>
+
+    <!-- 新增红色灯泡亮度级别颜色 -->
+    <color name="red_bulb_level_off">#494949</color>
+    <color name="red_bulb_level_1">#80FF0000</color>
+    <color name="red_bulb_level_2">#B3FF0000</color>
+    <color name="red_bulb_level_3">#CCFF0000</color>
+    <color name="red_bulb_level_4">#E6FF0000</color>
+    <color name="red_bulb_level_5">#FFFF0000</color>
+</resources>
